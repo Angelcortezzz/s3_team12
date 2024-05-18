@@ -16,20 +16,13 @@ with col2:
     rh = st.slider("RH", min_value=0.0, max_value=100.0, step=0.01, format="%.5f")
     ah = st.slider("AH", min_value=0.0, max_value=50.0, step=0.01, format="%.5f")
 
-# CSS to style the slider thumb with a cloud image
-cloud_slider_css = '''
-<style>
-.st-ck[data-baseweb="slider"] > .st-ck-thumb {
+# CSS to style the entire app with the background image
+background_css = '''
+body {
     background-image: url('https://e7.pngegg.com/pngimages/401/219/png-clipart-blue-cloud-art-cloud-computing-cloud-blue-cloud-thumbnail.png');
     background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    width: 25px; /* Adjust the width of the cloud image */
-    height: 25px; /* Adjust the height of the cloud image */
-    border: none; /* Remove border */
-    border-radius: 50%; /* Make it circular */
 }
-</style>
 '''
 
-st.markdown(cloud_slider_css, unsafe_allow_html=True)
+# Apply the CSS styling to the entire app
+st.markdown(f'<style>{background_css}</style>', unsafe_allow_html=True)
