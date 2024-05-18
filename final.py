@@ -1,10 +1,6 @@
 import streamlit as st
-import numpy as np
-import tensorflow as tf
-
 
 st.title("Air Quality")
-
 
 col1, col2, col3 = st.columns(3)
 
@@ -20,9 +16,9 @@ with col2:
     rh = st.slider("RH", min_value=0.0, max_value=100.0, step=0.01, format="%.5f")
     ah = st.slider("AH", min_value=0.0, max_value=50.0, step=0.01, format="%.5f")
 
-
 # CSS to style the slider thumb with a cloud image
 cloud_slider_css = '''
+<style>
 .st-ck[data-baseweb="slider"] > .st-ck-thumb {
     background-image: url('https://e7.pngegg.com/pngimages/401/219/png-clipart-blue-cloud-art-cloud-computing-cloud-blue-cloud-thumbnail.png');
     background-size: cover;
@@ -33,6 +29,7 @@ cloud_slider_css = '''
     border: none; /* Remove border */
     border-radius: 50%; /* Make it circular */
 }
+</style>
 '''
 
 st.markdown(cloud_slider_css, unsafe_allow_html=True)
