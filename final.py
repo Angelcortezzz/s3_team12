@@ -17,8 +17,9 @@ def classify_air_quality(co, nmhc, benzene, nox, no2, temp, rh):
     worst_category = "good"  # Initialize worst category as "good"
     
     for param in thresholds:
+        if param not in locals():  # Check if parameter exists
+            continue
         for category in categories:
-            print(f"Param: {param}, Category: {category}")  # Print parameters and categories being accessed
             if locals()[param] > thresholds[param][category]:
                 worst_category = category
                 break  # Exit the loop once a worse category is found
@@ -36,6 +37,6 @@ temp = st.slider("Temperature", min_value=-20.0, max_value=50.0, step=0.01, form
 rh = st.slider("RH", min_value=0.0, max_value=100.0, step=0.01, format="%.5f")
 
 # Classify air quality
-if st.button("Classify Air Quality"):
+if st.button("Predict Air Quality"):
     air_quality_category = classify_air_quality(co, nmhc, benzene, nox, no2, temp, rh)
     st.write(f"The air quality is predicted as: {air_quality_category.capitalize()}")
