@@ -11,23 +11,23 @@ thresholds = {
     "RH": {"good": 40.0, "moderate": 50.0, "usg": 60.0, "unhealthy": 70.0, "very_unhealthy": 80.0, "hazardous": 90.0}
 }
 
-# Check air quality classification
-def classify_air_quality(co, nmhc, benzene, nox, no2, temp, rh):
+# Check air quality prediction
+def predict_air_quality(co, nmhc, benzene, nox, no2, temp, rh):
     categories = ["good", "moderate", "usg", "unhealthy", "very_unhealthy", "hazardous"]
-    worst_category = "good"  # Initialize worst category as "good"
+    best_category = "good"  
     
     for param in thresholds:
         if param not in locals():  # Check if parameter exists
             continue
         for category in categories:
             if locals()[param] > thresholds[param][category]:
-                worst_category = category
+                best_category = category
                 break  # Exit the loop once a worse category is found
     
-    return worst_category
+    return good_category
 
 # Input sliders
-st.title("Air Quality Classification")
+st.title("Air Quality Prediction")
 co = st.slider("CO", min_value=0.0, max_value=20.0, step=0.01, format="%.5f")
 nmhc = st.slider("NMHC", min_value=0.0, max_value=2000.0, step=0.01, format="%.5f")
 benzene = st.slider("Benzene", min_value=0.0, max_value=50.0, step=0.01, format="%.5f")
@@ -36,7 +36,7 @@ no2 = st.slider("NO2", min_value=0.0, max_value=100.0, step=0.01, format="%.5f")
 temp = st.slider("Temperature", min_value=-20.0, max_value=50.0, step=0.01, format="%.5f")
 rh = st.slider("RH", min_value=0.0, max_value=100.0, step=0.01, format="%.5f")
 
-# Classify air quality
-if st.button("Classify Air Quality"):
-    air_quality_category = classify_air_quality(co, nmhc, benzene, nox, no2, temp, rh)
-    st.write(f"The air quality is classified as: {air_quality_category.capitalize()}")
+# Predict air quality
+if st.button("Predict Air Quality"):
+    air_quality_category = predict_air_quality(co, nmhc, benzene, nox, no2, temp, rh)
+    st.write(f"The air quality is predicted as: {air_quality_category.capitalize()}")
