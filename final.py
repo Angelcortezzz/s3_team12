@@ -9,7 +9,7 @@ def load_model(filepath):
     model = tf.keras.models.load_model(filepath)
     return model
 
-model = load_model('C:/Users/robvi/Downloads/streamlit/model (3).h5')
+model = load_model('model.h5')
 
 st.title("Air Quality Prediction")
 
