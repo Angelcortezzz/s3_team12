@@ -9,5 +9,4 @@ def load_model(filepath):
 
 st.title("Predicting Air Quality using LSTM Model")
 
-model = load_model('model.h5')
-
+model = load_model('lstm_yaml.h5')
