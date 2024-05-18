@@ -18,7 +18,6 @@ def classify_air_quality(co, nmhc, benzene, nox, no2, temp, rh):
     
     for param in thresholds:
         for category in categories:
-            print(f"Param: {param}, Category: {category}")  # Print parameters and categories being accessed
             if locals()[param] > thresholds[param][category]:
                 worst_category = category
                 break  # Exit the loop once a worse category is found
@@ -26,7 +25,7 @@ def classify_air_quality(co, nmhc, benzene, nox, no2, temp, rh):
     return worst_category
 
 # Input sliders
-st.title("Air Quality Prediction")
+st.title("Air Quality Classification")
 co = st.slider("CO", min_value=0.0, max_value=20.0, step=0.01, format="%.5f")
 nmhc = st.slider("NMHC", min_value=0.0, max_value=2000.0, step=0.01, format="%.5f")
 benzene = st.slider("Benzene", min_value=0.0, max_value=50.0, step=0.01, format="%.5f")
@@ -36,6 +35,5 @@ temp = st.slider("Temperature", min_value=-20.0, max_value=50.0, step=0.01, form
 rh = st.slider("RH", min_value=0.0, max_value=100.0, step=0.01, format="%.5f")
 
 # Classify air quality
-if st.button("Classify Air Quality"):
-    air_quality_category = classify_air_quality(co, nmhc, benzene, nox, no2, temp, rh)
-    st.write(f"The air quality is predicted as: {air_quality_category.capitalize()}")
+air_quality_category = classify_air_quality(co, nmhc, benzene, nox, no2, temp, rh)
+st.write(f"The air quality is classified as: {air_quality_category.capitalize()}")
