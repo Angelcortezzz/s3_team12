@@ -9,4 +9,5 @@ def load_model(filepath):
 
 st.title("Predicting Air Quality using LSTM Model")
 
-model = load_model('C:\Users\Angel\Desktop\streamlit\model.h5')
+model = load_model('model.h5')
+
