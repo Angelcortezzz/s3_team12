@@ -24,7 +24,7 @@ def predict_air_quality(co, nmhc, benzene, nox, no2, temp, rh):
                 best_category = category
                 break  # Exit the loop once a worse category is found
     
-    return good_category
+    return best_category
 
 # Input sliders
 st.title("Air Quality Prediction")
