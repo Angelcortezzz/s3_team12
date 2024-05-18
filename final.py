@@ -17,8 +17,9 @@ def classify_air_quality(co, nmhc, benzene, nox, no2, temp, rh):
     worst_category = "good"  # Initialize worst category as "good"
     
     for param in thresholds:
+        if param not in locals():  # Check if parameter exists
+            continue
         for category in categories:
-            print(f"Param: {param}, Category: {category}")  # Print parameters and categories being accessed
             if locals()[param] > thresholds[param][category]:
                 worst_category = category
                 break  # Exit the loop once a worse category is found
