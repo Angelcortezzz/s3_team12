@@ -2,5 +2,5 @@ pandas
 matplotlib
 statsmodels
 scikit-learn
-numpys
+numpy
 tensorflow
