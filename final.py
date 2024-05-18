@@ -17,14 +17,16 @@ def classify_air_quality(co, nmhc, benzene, nox, no2, temp, rh):
     worst_category = "good"  # Initialize worst category as "good"
     
     for param in thresholds:
-        for category in categories:
-            if locals()[param] > thresholds[param][category]:
-                worst_category = category
+        if param in locals() and locals()[param] > thresholds[param][worst_category]:
+            worst_category = "moderate"  # If the parameter is present and exceeds the "good" threshold, set worst category to "moderate"
+            for category in categories[1:]:  # Check the rest of the categories
+                if locals()[param] > thresholds[param][category]:
+                    worst_category = category
     
     return worst_category
 
 # Input sliders
-st.title("Air Quality Prediction")
+st.title("Air Quality Prediction)
 co = st.slider("CO", min_value=0.0, max_value=20.0, step=0.01, format="%.5f")
 nmhc = st.slider("NMHC", min_value=0.0, max_value=2000.0, step=0.01, format="%.5f")
 benzene = st.slider("Benzene", min_value=0.0, max_value=50.0, step=0.01, format="%.5f")
