@@ -3,15 +3,8 @@ import numpy as np
 import tensorflow as tf
 
 
-
 @st.cache_resource
-def load_model(filepath):
-    model = tf.keras.models.load_model(filepath)
-    return model
-
-model = load_model('model.h5')
-
-st.title("Air Quality Prediction")
+st.title("Air Quality")
 
 
 col1, col2, col3 = st.columns(3)
@@ -28,10 +21,6 @@ with col2:
     rh = st.slider("RH", min_value=0.0, max_value=100.0, step=0.01, format="%.5f")
     ah = st.slider("AH", min_value=0.0, max_value=50.0, step=0.01, format="%.5f")
 
-if st.button("Predict"):
-    features = np.array([[co, nmhc, benzene, nox, no2, temp, rh, ah]])
-    prediction = model.predict(features)
-    st.write(f"Predicted Air Quality Value: {prediction[0][0]:.5f}")
 
 # CSS to style the slider thumb with a cloud image
 cloud_slider_css = '''
