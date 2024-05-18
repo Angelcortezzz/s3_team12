@@ -3,7 +3,6 @@ import numpy as np
 import tensorflow as tf
 
 
-@st.cache_resource
 st.title("Air Quality")
 
 
